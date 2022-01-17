@@ -5,7 +5,7 @@
 
 A GitHub Action for downloading the League of Legends Data Dragon.
 
-> Data Dragon is our way of centralizing League of Legends game data and assets, including champions, items, runes, summoner spells, and profile icons. All of which can be used by third-party developers. You can download a compressed tarball (.tgz) for each patch which will contain all assets for that patch. Please be aware that updating Data Dragon after each League of Legends patch is a manual process, so it is not always updated immediately after a patch. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#:~:text=tier%2Dicons.zip-,Data%20Dragon,-Data%20Dragon%20is)
+> Data Dragon is our way of centralizing League of Legends game data and assets, including champions, items, runes, summoner spells, and profile icons. All of which can be used by third-party developers. You can download a compressed tarball (.tgz) for each patch which will contain all assets for that patch. Please be aware that updating Data Dragon after each League of Legends patch is a manual process, so it is not always updated immediately after a patch. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#data-dragon)
 
 ## Example
 If you don't specify any inputs the latest version will be downloaded as "dragontail.tgz" ([or "dragontail.zip" if the version is a zip](https://developer.riotgames.com/docs/lol#:~:text=Patch%2010.10%20was%20uploaded%20as%20a%20zip%20archive%20(.zip)%20instead%20of%20the%20typical%20compressed%20tarball%20(.tgz))).
