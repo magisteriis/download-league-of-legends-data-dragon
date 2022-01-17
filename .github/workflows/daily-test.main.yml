@@ -3,10 +3,6 @@ name: Daily Test (@main)
 on:
   schedule:
     - cron: '0 10 * * *'
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
