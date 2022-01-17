@@ -1,0 +1,177 @@
+name: 'Download Data Dragon' 
+description: 'Downloads the League of Legends Data Dragon.'
+author: 'Mikael Dúi Bolinder'
+branding:
+  icon: 'download'  
+  color: 'yellow'
+inputs:
+  region:
+    description: 'A League of Legends region.'
+    required: false
+    type: string
+  version:
+    description: 'A Data Dragon version.'
+    required: false
+    type: string
+  path:
+    descripton: 'The path for the downloaded Data Dragon.'
+    required: false
+    type: string
+    default: './dragontail.tgz'
+outputs:
+  version:
+    description: "The version of the Data Dragon downloaded."
+    value: ${{ steps.data-dragon.outputs.version }}
+  path:
+    description: "The path of the downloaded Data Dragon."
+    value: ${{ steps.data-dragon.outputs.path }}
+runs:
+  using: "composite"
+  steps:  
+    - name: Download Data Dragon
+      id: data-dragon
+      uses: actions/github-script@v3
+      with:
+        script: |        
+          var region = "${{ inputs.region }}"
+          var version = "${{ inputs.version }}"
+          var path = "${{ inputs.path }}"
+          region.length !== 0 && version.length !== 0 && core.setFailed("You can't specify both region and version. That doesn't make sense.")
+          
+          const https = require('https');   
+          
+          if (region.length !== 0) {          
+            getRealmVersion(region, downloadDataDragon);
+          } else {        
+            getLatestVersion(downloadDataDragon);
+          } 
+          
+          function get(path, callback) {
+            var options = {
+              host: 'ddragon.leagueoflegends.com',
+              path: path,
+              headers: {'User-Agent': 'GitHubActions/prod DownloadDataDragon/1 (+https://github.com/mikaeldui/download-data-dragon)'}
+            };
+            
+            return https.get(options, callback);
+          }
+
+          function getRealmVersion(region, callback) {
+            get('/realms/' + region.toLowerCase() + '.json', function (res) {
+                var json = '';
+                res.on('data', function (chunk) {
+                    json += chunk;
+                });
+                res.on('end', function () {
+                    if (res.statusCode === 200) {
+                        try {
+                            const data = JSON.parse(json);                          
+                            if (/^\d+\.\d+\.\d+$/.test(data["dd"])) {
+                              core.info("Data Dragon version for " + region + ": " + data["dd"]);
+                              callback(data["dd"]);
+                            } else
+                              core.setFailed("The data dragon version wasn't valid!");
+                        } catch (e) {
+                            core.setFailed('Error parsing JSON!');
+                        }
+                    } else {
+                        core.setFailed('Status: ' + res.statusCode);
+                    }
+                });
+              }).on('error', function (err) {
+                    core.setFailed(err);
+              });
+          }
+
+          function getLatestVersion(callback) {
+            get('/api/versions.json', function (res) {
+                var json = '';
+                res.on('data', function (chunk) {
+                    json += chunk;
+                });
+                res.on('end', function () {
+                    if (res.statusCode === 200) {
+                        try {
+                            const data = JSON.parse(json);                          
+                            if (/^\d+\.\d+\.\d+$/.test(data[0])) {                          
+                              core.info("Latest Data Dragon version: " + data[0]);
+                              callback(data[0]);
+                            } else
+                              core.setFailed("The data dragon version wasn't valid!");
+                        } catch (e) {
+                            core.setFailed('Error parsing JSON!');
+                        }
+                    } else {
+                        core.setFailed('Status: ' + res.statusCode);
+                    }
+                });
+              }).on('error', function (err) {
+                    core.setFailed(err);
+              });
+          }
+
+          function downloadDataDragon(version) {
+            core.setOutput('version', version);
+            const fs = require('fs');
+            var file = fs.createWriteStream(path); 
+            get('/cdn/dragontail-' + version + '.tgz', function(res) {
+                res.pipe(file);                
+                httpsDownloadStatus(res);
+                res.on('end', function () {
+                  if (res.statusCode === 200) {
+                    file.close();
+                    core.setOutput('path', path);                    
+                    core.info('\u001b[32m/cdn/dragontail-' + version + '.tgz downloaded as ' + path)
+                  } else if (res.statusCode === 403 || res.statusCode === 404) { // DD uses 403 instead of 404
+                    core.warning("Couldn't find /cdn/dragontail-" + version + '.tgz. Trying /cdn/dragontail-' + version + '.zip')
+                    file = fs.createWriteStream(path.replace(new RegExp("\.tgz$"), ".zip")); 
+                    get('/cdn/dragontail-' + version + '.zip', function(res) {
+                      res.pipe(file);
+                      httpsDownloadStatus(res);
+                      res.on('end', function () {
+                        if (res.statusCode === 200) {
+                          file.close();
+                          core.setOutput('path', path);
+                          core.info('\u001b[32m/cdn/dragontail-' + version + '.zip downloaded as ' + path.replace(new RegExp("\.tgz$"), ".zip"))
+                        } else {
+                          core.setFailed('/cdn/dragontail-' + version + '.zip status ' + res.statusCode);
+                        }
+                      });
+                    }).on('error', function (err) {
+                      core.setFailed('Error trying to download /cdn/dragontail-' + version + '.zip: ' + err)
+                    });
+                  } else {
+                    core.setFailed('/cdn/dragontail-' + version + '.tgz status: ' + res.statusCode);
+                  }
+                });
+              }).on('error', function (err) {
+                core.setFailed('Error trying to download /cdn/dragontail-' + version + '.tgz: ' + err)
+              });
+          }
+          
+          function httpsDownloadStatus(res) {
+            var total_bytes = parseInt(res.headers['content-length'], 10);
+            var received_bytes = 0;
+            var percent = -1;
+            core.info('\u001b[34mData Dragon size: ' + formatBytes(total_bytes))
+            res.on('data', function(chunk) {
+              received_bytes += chunk.length;                    
+              var newPercent = Math.round((100.0 * received_bytes / total_bytes) / 10) * 10;
+              if (percent !== newPercent) {              
+                percent = newPercent;
+                core.info('\u001b[34mData Dragon Download Progress: ' + formatBytes(received_bytes) + "/" + formatBytes(total_bytes) + " (" + percent + "%)")
+              }
+            })            
+            
+            function formatBytes(bytes, decimals = 2) {
+              if (bytes === 0) return '0 Bytes';
+
+              const k = 1024;
+              const dm = decimals < 0 ? 0 : decimals;
+              const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+              const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+              return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            }
+          }
