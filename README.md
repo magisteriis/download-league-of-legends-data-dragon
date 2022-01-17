@@ -34,7 +34,7 @@ Can't be used together with `region`.
         version: 12.1.1     
         
 ### Path
-You can set a custom path for the downloaded file. The default is 'dragontail.tgz'.
+You can set a custom path for the downloaded file. The default is './dragontail.tgz' (Note: version 10.10 was a .zip and if a zip is downloaded the extension will be change to .zip, even for a custom path).
 
     - name: Download Data Dragon version 12.1.1
       uses: mikaeldui/download-data-dragon@v1
