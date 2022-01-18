@@ -46,7 +46,7 @@ You can set a custom path for the downloaded file. The default is `./dragontail.
 ### Outputs
 
 #### Version
-The action will output the version downloaded.
+The action will output the version of the Data Dragon downloaded.
 
     - name: Download Data Dragon
       uses: mikaeldui/download-data-dragon@v1
