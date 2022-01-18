@@ -40,8 +40,8 @@ You can set a custom path for the downloaded file. The default is `./dragontail.
     - name: Download Data Dragon version 12.1.1
       uses: mikaeldui/download-data-dragon@v1
       with:
-        version: 12.1.1
-        path: './dragontails/12.1.1.tgz'
+        region: EUW
+        path: './dragontails/euw.tgz'
         
 ### Outputs
 
