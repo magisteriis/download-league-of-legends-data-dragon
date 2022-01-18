@@ -6,6 +6,9 @@ on:
 jobs:
   tag:
     runs-on: ubuntu-latest
+    environment: 
+      name: github-marketplace
+      url: 'https://github.com/marketplace/actions/download-data-dragon'
     steps:
       - uses: actions/checkout@v2
       - name: Run a multi-line script
