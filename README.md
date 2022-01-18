@@ -17,7 +17,7 @@ Download the latest version as `./dragontail.tgz` *([or `./dragontail.zip` if th
       run: tar -xvzf dragontail.tgz
       
 ### Regions
-> Data Dragon versions aren't always equivalent to the League of Legends client version in a region. You can find the version each region is using via the realms files. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#:~:text=Data%20Dragon%20versions%20aren%27t%20always%20equivalent%20to%20the%20League%20of%20Legends%20client%20version%20in%20a%20region.%20You%20can%20find%20the%20version%20each%20region%20is%20using%20via%20the%20realms%20files.)
+> Data Dragon versions aren't always equivalent to the League of Legends client version in a region. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#:~:text=Data%20Dragon%20versions%20aren%27t%20always%20equivalent%20to%20the%20League%20of%20Legends%20client%20version%20in%20a%20region.%20You%20can%20find%20the%20version%20each%20region%20is%20using%20via%20the%20realms%20files.)
 
     - name: Download Data Dragon for EUW
       uses: mikaeldui/download-data-dragon@v1
