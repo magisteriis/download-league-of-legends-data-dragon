@@ -1,6 +1,5 @@
 # Download Data Dragon
 [![Daily Test (@v1)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.v1.yml/badge.svg)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.v1.yml)
-[![Daily Test (@main)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.main.yml/badge.svg)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.main.yml)
 
 ![image](https://user-images.githubusercontent.com/3706841/149832547-f691560f-94ce-4bf9-b276-4afce6279c3a.png)
 
