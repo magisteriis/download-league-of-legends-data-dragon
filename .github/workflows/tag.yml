@@ -1,0 +1,14 @@
+name: 'Move @v1'
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a multi-line script
+        run: |
+          git tag --force v1
+          git push --force --tags
