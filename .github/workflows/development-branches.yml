@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2      
       - name: Download the latest Data Dragon
+        id: data-dragon
         uses: ./
         
       - name: Test result
@@ -19,8 +20,8 @@ jobs:
           script: |
             const fs = require('fs');
             fileExists('dragontail.tgz', () => fileExists('dragontail.zip', () => core.setFailed('No Data Dragon downloaded!')));
-            "${{ steps.dragon-tail.outputs.version }}".length === 0 && core.setFailed('No Data Dragon version!');
-            "${{ steps.dragon-tail.outputs.path }}".length === 0 && core.setFailed('No Data Dragon path!');
+            "${{ steps.data-dragon.outputs.version }}".length === 0 && core.setFailed('No Data Dragon version!');
+            "${{ steps.data-dragon.outputs.path }}".length === 0 && core.setFailed('No Data Dragon path!');
 
             function fileExists(path, error) {
               fs.access(path, fs.F_OK, (err) => {
