@@ -1,5 +1,5 @@
-# Download Data Dragon
-[![Daily Test (@v1)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.v1.yml/badge.svg)](https://github.com/mikaeldui/download-data-dragon/actions/workflows/daily-test.v1.yml)
+# Download League of Legends Data Dragon
+[![Daily Test (@v1)](https://github.com/mikaeldui/download-league-of-legends-data-dragon/actions/workflows/daily-test.v1.yml/badge.svg)](https://github.com/mikaeldui/download-league-of-legends-data-dragon/actions/workflows/daily-test.v1.yml)
 
 ![image](https://user-images.githubusercontent.com/3706841/149832547-f691560f-94ce-4bf9-b276-4afce6279c3a.png)
 
@@ -66,4 +66,4 @@ The action will output the version of the Data Dragon downloaded.
       run: tar -xvzf ${{ steps.data-dragon.outputs.path }}
         
 ## Notice from Riot Games, Inc.
-The GitHub Action "[Download Data Dragon](https://github.com/marketplace/actions/download-data-dragon)" by [@mikaeldui](https://github.com/mikaeldui) isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+The GitHub Action "[Download Data Dragon](https://github.com/marketplace/actions/download-league-of-legends-data-dragon)" by [@mikaeldui](https://github.com/mikaeldui) isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
