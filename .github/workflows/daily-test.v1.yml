@@ -9,9 +9,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Download the latest Data Dragon
+      - name: Download the latest League of Legends Data Dragon
         id: dragon-tail
-        uses: mikaeldui/download-data-dragon@v1
+        uses: mikaeldui/download-league-of-legends-data-dragon@v1
         
       - name: Test result
         uses: actions/github-script@v5
