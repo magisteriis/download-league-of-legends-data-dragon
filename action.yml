@@ -1,4 +1,4 @@
-name: 'Download Data Dragon' 
+name: 'Download League of Legends Data Dragon' 
 description: 'Downloads the League of Legends Data Dragon.'
 author: 'Mikael Dúi Bolinder'
 branding:
@@ -28,7 +28,7 @@ outputs:
 runs:
   using: "composite"
   steps:  
-    - name: Download Data Dragon
+    - name: Download League of Legends Data Dragon
       id: data-dragon
       uses: actions/github-script@v3
       with:
