@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Download the latest Data Dragon
         id: dragon-tail
-        uses: mikaeldui/download-data-dragon@main
+        uses: ./
         
       - name: Test result
         uses: actions/github-script@v5
