@@ -3,7 +3,7 @@
 
 ![image](https://user-images.githubusercontent.com/3706841/149832547-f691560f-94ce-4bf9-b276-4afce6279c3a.png)
 
-A GitHub Action for downloading the League of Legends Data Dragon.
+A GitHub Action for downloading the League of Legends Data Dragon. The download takes ~5 seconds.
 
 > Data Dragon is our way of centralizing League of Legends game data and assets, including champions, items, runes, summoner spells, and profile icons. All of which can be used by third-party developers. You can download a compressed tarball (.tgz) for each patch which will contain all assets for that patch. Please be aware that updating Data Dragon after each League of Legends patch is a manual process, so it is not always updated immediately after a patch. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#data-dragon)
 
