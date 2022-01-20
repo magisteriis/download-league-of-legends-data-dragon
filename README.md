@@ -44,9 +44,9 @@ You can set a custom path for the downloaded file. The default is `./dragontail.
         region: EUW
         path: './dragontails/euw.tgz'
         
-### Outputs
+## Outputs
 
-#### `version`
+### `version`
 The action will output the version of the Data Dragon downloaded.
 
     - name: Download Data Dragon
@@ -56,7 +56,7 @@ The action will output the version of the Data Dragon downloaded.
     - name: Print the version
       run: echo "Downloaded Data Dragon version: ${{ steps.data-dragon.outputs.version }}"
 
-#### `path`
+### `path`
 [Version 10.10 was a zip](https://developer.riotgames.com/docs/lol#:~:text=Patch%2010.10%20was%20uploaded%20as%20a%20zip%20archive%20(.zip)%20instead%20of%20the%20typical%20compressed%20tarball%20(.tgz)). If the downloaded Data Dragon is a zip the extension will be changed to zip. This also applies if you specify a manual path ending with ".tgz". You can get the path to the file written from the action output.
 
     - name: Download Data Dragon
