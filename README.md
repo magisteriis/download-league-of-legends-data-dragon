@@ -16,7 +16,8 @@ Download the latest version as `./dragontail.tgz` *([or `./dragontail.zip` if th
     - name: Extract Data Dragon
       run: tar -xvzf dragontail.tgz
       
-### Regions
+## Inputs
+### `region`
 > Data Dragon versions aren't always equivalent to the League of Legends client version in a region. - [Riot Developer Portal](https://developer.riotgames.com/docs/lol#:~:text=Data%20Dragon%20versions%20aren%27t%20always%20equivalent%20to%20the%20League%20of%20Legends%20client%20version%20in%20a%20region.%20You%20can%20find%20the%20version%20each%20region%20is%20using%20via%20the%20realms%20files.)
 
     - name: Download Data Dragon for EUW
@@ -24,15 +25,15 @@ Download the latest version as `./dragontail.tgz` *([or `./dragontail.zip` if th
       with:
         region: EUW
         
-### Specific Version
-Can't be used together with `region`.
+### `version`
+Can't be used together with `region`. Download a specific version of the Data Dragon.
 
     - name: Download Data Dragon version 12.1.1
       uses: mikaeldui/download-league-of-legends-data-dragon@v1
       with:
         version: 12.1.1     
         
-### Path
+### `path`
 You can set a custom path for the downloaded file. The default is `./dragontail.tgz`.
 
 *Note: version 10.10 was a .zip and if a zip is downloaded the extension will be changed to .zip, even for a custom path.*
@@ -45,7 +46,7 @@ You can set a custom path for the downloaded file. The default is `./dragontail.
         
 ### Outputs
 
-#### Version
+#### `version`
 The action will output the version of the Data Dragon downloaded.
 
     - name: Download Data Dragon
@@ -55,7 +56,7 @@ The action will output the version of the Data Dragon downloaded.
     - name: Print the version
       run: echo "Downloaded Data Dragon version: ${{ steps.data-dragon.outputs.version }}"
 
-#### Path
+#### `path`
 [Version 10.10 was a zip](https://developer.riotgames.com/docs/lol#:~:text=Patch%2010.10%20was%20uploaded%20as%20a%20zip%20archive%20(.zip)%20instead%20of%20the%20typical%20compressed%20tarball%20(.tgz)). If the downloaded Data Dragon is a zip the extension will be changed to zip. This also applies if you specify a manual path ending with ".tgz". You can get the path to the file written from the action output.
 
     - name: Download Data Dragon
