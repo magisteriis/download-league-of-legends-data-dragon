@@ -65,6 +65,11 @@ The action will output the version of the Data Dragon downloaded.
       
     - name: Extract Data Dragon
       run: tar -xvzf ${{ steps.data-dragon.outputs.path }}
+      
+## Sponsors
+
+[![Sentry Logo](https://raw.githubusercontent.com/mikaeldui/riot-games-dotnet-client/main/sponsors/sentry.svg)](https://sentry.io/for/good/)
+[![JetBrains Logo (Main) logo](https://raw.githubusercontent.com/mikaeldui/riot-games-dotnet-client/main/sponsors/jetbrains.svg)](https://jb.gg/OpenSourceSupport)
         
 ## Notice from Riot Games, Inc.
 The GitHub Action "[Download League of Legends Data Dragon](https://github.com/marketplace/actions/download-league-of-legends-data-dragon)" by [@mikaeldui](https://github.com/mikaeldui) isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
