@@ -10,7 +10,7 @@ jobs:
       name: github-marketplace
       url: 'https://github.com/marketplace/actions/download-league-of-legends-data-dragon'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run a multi-line script
         run: |
           git tag --force v1
