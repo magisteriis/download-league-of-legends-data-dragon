@@ -30,7 +30,7 @@ runs:
   steps:  
     - name: Download League of Legends Data Dragon
       id: data-dragon
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |        
           var region = "${{ inputs.region }}"
